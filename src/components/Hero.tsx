@@ -16,7 +16,7 @@ export default function Hero() {
               Ton <span className="text-primary">carnet musical</span> social.
             </h1>
             <p className="mt-4 text-lg text-muted">
-              Découvre, note et partage ta passion pour la musique. Une expérience mobile élégante, pensée pour la communauté.
+              Découvre et partage ta passion pour la musique. Une expérience mobile élégante, pensée pour la communauté.
             </p>
             <div className="mt-8 flex gap-3">
               <a href="#footer" className="btn text-white font-semibold px-5 py-2 rounded-lg hover:opacity-90 transition">
