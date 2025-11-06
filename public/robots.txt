@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://truebpm.fr/sitemap.xml
