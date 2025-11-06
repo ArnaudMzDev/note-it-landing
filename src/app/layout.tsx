@@ -57,13 +57,15 @@ export const metadata: Metadata = {
     creator: "@TrueBPM",
     images: ["/og-image.png"],
   },
+  // ✅ Correction : favicon unique en PNG + Apple touch
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-32x32.png", sizes: "32x32" },
-      { url: "/favicon-16x16.png", sizes: "16x16" },
+      { url: "/faviconn.png", sizes: "32x32", type: "image/png" },
+      { url: "/faviconn.png", sizes: "192x192", type: "image/png" },
+      { url: "/faviconn.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: "/apple-touch-icon.png",
+    apple: { url: "/faviconn.png", sizes: "180x180", type: "image/png" },
+    shortcut: { url: "/faviconn.png", type: "image/png" },
   },
   manifest: "/site.webmanifest",
   themeColor: "#9B5CFF",
@@ -84,6 +86,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "votre-code-google-site-verification", // optionnel
+  },
 };
 
 export default function RootLayout({
@@ -94,28 +99,33 @@ export default function RootLayout({
   return (
       <html lang="fr" prefix="og: https://ogp.me/ns#">
       <head>
-        {/* Données structurées JSON-LD */}
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                name: "TrueBPM",
-                url: "https://truebpm.fr",
-                logo: "https://truebpm.fr/apple-touch-icon.png",
-                sameAs: [
-                  "https://twitter.com/TrueBPM",
-                  "https://www.instagram.com/TrueBPM",
-                ],
-                description:
-                    "TrueBPM est une application sociale pour les passionnés de musique — découvre, note et partage tes sons préférés.",
-              }),
-            }}
-        />
+        {/* ✅ Fallback manuel pour anciens navigateurs */}
+        <link rel="icon" href="/faviconn.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/faviconn.png" />
       </head>
       <body className={`${inter.className} bg-bg text-ink`}>
       <Header />
+
+      {/* ✅ Données structurées JSON-LD */}
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "TrueBPM",
+              url: "https://truebpm.fr",
+              logo: "https://truebpm.fr/favicon.png",
+              sameAs: [
+                "https://twitter.com/TrueBPM",
+                "https://www.instagram.com/TrueBPM",
+              ],
+              description:
+                  "TrueBPM est une application sociale pour les passionnés de musique — découvre, note et partage tes sons préférés.",
+            }),
+          }}
+      />
+
       {children}
       </body>
       </html>
